@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <title>Account</title>
+</head>
+<body>
+    <div class="mt-lg-5 me-lg-5">
+        <div class="hstack float-end m-3">
+            <a href="/home/{{user.id}}"><button class="m-2 text-bg-success">Home</button></a>
+            <a href="/sign_out"><button class="m-2 text-bg-danger">Sign Out</button></a>
+        </div>
+        <div class="text-center">
+            <div class="col-5 mx-auto p-5 text-start text-bg-dark">
+                <h1 class="text-success text-center mb-lg-5">Welcome, {{user.first_name}}!</h1>
+                {% with messages = get_flashed_messages(user_dict) %}
+                {% for message in messages: %}
+                    <p>{{ message }}</p>
+                {% endfor %}
+                {% endwith %}
+                <form action="/user/update" method="post" class="form-check">
+                    <input type="hidden" name="id" value={{user.id}}>
+                    <div class="mb-3">
+                        <label for="first_name" class="form-label">First Name: </label>
+                        <input type="text" name="first_name" value="{{user.first_name}}" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label for="last_name" class="form-label">Last Name: </label>
+                        <input type="text" name="last_name" value="{{user.last_name}}" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email: </label>
+                        <input type="text" name="email" value="{{user.email}}" class="form-control">
+                    </div>
+                    <div>
+                        <input type="submit" class="text-bg-success" value="Update">
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class ="text-center col-10 mx-auto my-5 p-5 text-start text-bg-dark">
+            <h1 class="text-center mb-5 text-success">Your Pets</h1>
+            <div class="float-end">
+                <a href="/pet/new/{{user.id}}"><button class="m-2 text-bg-success">Add Pet</button></a>
+            </div>
+            <table class="table table-bordered table-dark">
+                <thead>
+                    <tr>
+                        <th class="col-1">Name</th>
+                        <th>Age</th>
+                        <th>Type</th>
+                        <th>Breed</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for pet in pets %}
+                        <tr>
+                            <td><a href="/pet/{{pet.id}}">{{pet.pet_name}}</a></td>
+                            <td>{{pet.age}}</td>
+                            <td>{{pet.type}}</td>
+                            <td>{{pet.breed}}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

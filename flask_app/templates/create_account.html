@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <title>Create Account</title>
+</head>
+<body>
+    <div class="m-3 text-center">
+        <div class="flex-column col-5 mx-auto m-5 p-5 text-start text-bg-dark">
+            <h1 class="text-success text-center mb-lg-5">Create an Account</h1>
+            <form action="/registration" method="post" class="form-check">
+                {% with messages = get_flashed_messages(category_filter=['register']) %}
+                    {% if messages %}
+                    <div>
+                        <strong>Oh Nooo!!!</strong>
+                            {% for message in messages %}
+                            <p class="text-danger">{{message}}</p>
+                            {% endfor %}
+                    </div>
+                    {% endif %}
+                {% endwith %}
+                <div class="mb-3">
+                    <label for="first_name" class="form-label">First Name: </label>
+                    <input type="text" name="first_name" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label for="last_name" class="form-label">Last Name: </label>
+                    <input type="text" name="last_name" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email: </label>
+                    <input type="text" name="email" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password: </label>
+                    <input type="password" name="password" class="form-control">
+                </div>
+                <div class="mb-5">
+                    <label for="confirmp" class="form-label">Confirm Password: </label>
+                    <input type="password" name="confirmp" class="form-control">
+                </div>
+                <div>
+                    <input type="submit" class="text-bg-primary" value="Create Account">
+                </div>
+            </form>
+            <div>
+                <a href="/sign_in_page"><button class="m-2 text-bg-success float-end">Sign in</button></a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

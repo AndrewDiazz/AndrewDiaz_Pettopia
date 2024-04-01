@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <title>Sign in</title>
+</head>
+<body>
+    <div class="m-3 text-center">
+        <div class ="form-check-inline col-5 m-5 p-5 text-start text-bg-dark">
+            <div class="text-start">
+                <h1 class="text-success text-center mb-5">WEOLCOME TO PETTOPIA</h1>
+            </div>
+            <form action="/sign_in" method="post">
+                {% with messages = get_flashed_messages(category_filter=['sign_in']) %}
+                    {% if messages %}
+                    <div>
+                        <strong>OPS!!!</strong>
+                            {% for message in messages %}
+                            <p class="text-danger">{{message}}</p>
+                            {% endfor %}
+                    </div>
+                    {% endif %}
+                {% endwith %}
+                <div class="mb-3">
+                    <label class="form-label" for="email">Email: </label>
+                    <input type="text" class="form-control" placeholder="example@example.com" name="email">
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label" for="password">Password:</label>
+                    <input type="password" class="form-control" name="password">
+                  </div>
+                  <div>
+                    <button type="submit" class="btn-success text-bg-success">Sign in</button>
+                  </div>
+            </form>
+            <div class="text-center">
+                <p>Not a member?</p>
+                <a href="/register_page">Create an account</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
